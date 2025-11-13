@@ -1,0 +1,58 @@
+.digital-item-card {
+  background-color: white;
+  color: black;
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.digital-item-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.digital-item-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.digital-item-card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.digital-item-card .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.digital-item-card .desc {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.digital-item-card .toggle-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.digital-item-card .toggle-btn:hover {
+  background-color: #0056b3;
+}

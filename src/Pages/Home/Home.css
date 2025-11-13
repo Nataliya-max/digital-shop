@@ -1,0 +1,55 @@
+/* Fondo de la página */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 50px 20px;
+  color: white;
+  background-image: url('/page.jpg'); /* imagen desde public */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Sección Home principal */
+.home-section {
+  height: 80vh; /* ocupa casi toda la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.home-section .overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* filtro oscuro para legibilidad */
+  padding: 40px 20px;
+  border-radius: 12px;
+}
+
+/* Secciones scroll */
+.scroll-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+  background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
+  padding: 60px 30px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.scroll-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tipografía */
+.home-section h1, .scroll-section h2 {
+  margin: 0 0 20px 0;
+}
+
+.home-section p, .scroll-section p {
+  font-size: 16px;
+  opacity: 0.9;
+}
