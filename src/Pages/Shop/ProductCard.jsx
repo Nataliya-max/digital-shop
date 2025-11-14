@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Shop.css';
+import ChangeQuantity from '../Cart/ChangeQuantity';
+
 
 export default function ProductCard({ itemData }) {
 
@@ -17,6 +19,12 @@ export default function ProductCard({ itemData }) {
     description.length > 26
       ? description.slice(0, 26).trimEnd().split(' ').slice(0, -1).join(' ') + '…'
       : description;
+
+      const [quantity, setQuantity] = useState(1);
+      const addQuantity = () => {
+        const newQuantity = quantity + 1;
+        setQuantity(newQuantity)
+      }
 
   return (
     <div className="product-card">
@@ -35,7 +43,8 @@ export default function ProductCard({ itemData }) {
           </button>
         )}
         <h4 className="tag-button">€ {price}</h4>
-        <button className="add-button">Add</button>
+        <button className="add-button" onClick={addQuantity}>Add</button>
+        <ChangeQuantity quantity={quantity} setQuantity={setQuantity} />
       </div>
     </div>
   );

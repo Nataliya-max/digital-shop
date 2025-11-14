@@ -29,3 +29,7 @@ function Buttons({ filteredItem, totalItems, categories }) {
 }
 
 export default Buttons;
+
+
+
+
