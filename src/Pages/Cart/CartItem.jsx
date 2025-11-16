@@ -1,14 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItemFromCart } from '../../redux/cartSlice';
 import './Cart.css';
+import { removeItemFromCart } from  '../../redux/cartSlice';
 
 export default function CartItem({ cartItem }) {
   const dispatch = useDispatch();
 
-  const handleRemove = () => {
-    dispatch(removeItemFromCart(cartItem.item.title));
-  };
+  
 
   return (
     <div className="cart-item">
@@ -19,7 +17,7 @@ export default function CartItem({ cartItem }) {
         <p>Cantidad: {cartItem.quantity}</p>
         <p>Total: € {cartItem.quantity * cartItem.item.price}</p>
       </div>
-      <button className="remove-button" onClick={handleRemove}>❌</button>
+      <button className="remove-button" onClick={() => dispatch(removeItemFromCart({ itemId: cartItem.item.id }))}>❌</button>
     </div>
   );
 }
