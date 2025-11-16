@@ -1,3 +1,5 @@
+import Cart from '../Cart/Cart';
+import CartItem from '../Cart/CartItem';
 import './Shop.css';
 
 function Buttons({ filteredItem, totalItems, categories }) {
@@ -5,7 +7,7 @@ function Buttons({ filteredItem, totalItems, categories }) {
     <div className="cont">
       {/* Botón All */}
       <button className="change" onClick={() => filteredItem("all")}>
-        All
+        Todo
       </button>
 
       {/* Botones dinámicos según categorías */}
@@ -20,11 +22,9 @@ function Buttons({ filteredItem, totalItems, categories }) {
       ))}
 
       {/* Icono de carrito */}
-      <div className="cart-icon">
-        <span>🛒</span>
-        {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+      <Cart/>
       </div>
-    </div>
+    
   );
 }
 

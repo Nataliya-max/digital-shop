@@ -1,50 +1,38 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Shop.css';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../../redux/cartSlice';
 import ChangeQuantity from '../Cart/ChangeQuantity';
-
+import './Shop.css';
 
 export default function ProductCard({ itemData }) {
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
-  const [isExpanded, setIsExpanded] = useState(false);
-  const { title, image, description, price } = itemData;
-  
-  if (!itemData || typeof itemData !== 'object' || Array.isArray(itemData)) {
-    console.error('Invalid itemData:', itemData);
-    return null;
-  }
-   
-  
-  const shortDesc =
-    description.length > 26
-      ? description.slice(0, 26).trimEnd().split(' ').slice(0, -1).join(' ') + '…'
-      : description;
-
-      const [quantity, setQuantity] = useState(1);
-      const addQuantity = () => {
-        const newQuantity = quantity + 1;
-        setQuantity(newQuantity)
-      }
+  const handleAdd = () => {
+    dispatch(addItemToCart({ item: itemData, quantity }));
+  };
 
   return (
     <div className="product-card">
-      <Link to={`/shop/${title}`} className="product-link">
-        <img src={image} alt={title} width="250" height="200" />
-      </Link>
+      {/* Imagen del producto */}
+      <img 
+        src={itemData.image} 
+        alt={itemData.title} 
+        className="product-image"
+      />
+
+      {/* Contenido de la tarjeta */}
       <div className="product-info">
-        <h3>{isExpanded ? description : shortDesc}</h3>
-        {description.length > 26 && (
-          <button
-            className="showMore-button"
-            onClick={() => setIsExpanded(prev => !prev)}
-            aria-expanded={isExpanded}
-          >
-            {isExpanded ? 'Show less' : 'Show more'}
-          </button>
-        )}
-        <h4 className="tag-button">€ {price}</h4>
-        <button className="add-button" onClick={addQuantity}>Add</button>
+        <h3 className="product-title">{itemData.title}</h3>
+        <p className="product-price">€ {itemData.price}</p>
+
+        {/* Selector de cantidad */}
         <ChangeQuantity quantity={quantity} setQuantity={setQuantity} />
+
+        {/* Botón añadir al carrito */}
+        <button className="add-button" onClick={handleAdd}>
+          Añadir
+        </button>
       </div>
     </div>
   );
