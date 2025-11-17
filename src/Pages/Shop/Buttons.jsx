@@ -19,10 +19,7 @@ function Buttons({ filteredItem, totalItems, categories }) {
         >
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </button>
-      ))}
-
-      {/* Icono de carrito */}
-      <Cart/>
+      ))}  
       </div>
     
   );
