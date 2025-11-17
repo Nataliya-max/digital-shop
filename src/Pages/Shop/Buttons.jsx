@@ -1,17 +1,24 @@
-import Cart from '../Cart/Cart';
-import CartItem from '../Cart/CartItem';
 import './Shop.css';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-function Buttons({ filteredItem, totalItems, categories }) {
+function Buttons({ filteredItem, categories }) {
+
+  // Obtener items
+  const cartItems = useSelector((state) => state.cart?.cartItems || []);
+
+  // Sumar todas las cantidades
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const navigate = useNavigate();
+
   return (
     <div className="cont">
-      {/* Botón All */}
       <button className="change" onClick={() => filteredItem("all")}>
         Todo
       </button>
 
-      {/* Botones dinámicos según categorías */}
-      {categories.map((category, index) => (
+      {categories?.map((category, index) => (
         <button
           key={index}
           className="change"
@@ -19,13 +26,23 @@ function Buttons({ filteredItem, totalItems, categories }) {
         >
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </button>
-      ))}  
-      </div>
-    
+      ))}
+
+      {/* Botón carrito con burbuja */}
+      <button className="cart-btn" onClick={() => navigate("/cart")}>
+        <span className="cart-icon">🛍️</span>
+
+        {/* Burbuja flotante */}
+        <span className="cart-bubble">
+          {totalQuantity === 0 ? "0" : totalQuantity}
+        </span>
+      </button>
+    </div>
   );
 }
 
 export default Buttons;
+
 
 
 
